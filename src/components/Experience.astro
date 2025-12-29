@@ -1,0 +1,55 @@
+---
+import '../styles/shared.css';
+---
+
+<section id="experience" class="section experience-section">
+	<div class="section-container">
+		<h2 class="section-title">Experience</h2>
+		<div class="experience-grid">
+			<div class="experience-card">
+				<h3>Lead Software Engineer</h3>
+				<p class="company">Clarivate</p>
+				<p class="timeline">2022 - Present</p>
+				<p class="description">
+					Leading engineering teams and architecting scalable solutions. Mentoring junior developers and driving technical excellence.
+				</p>
+			</div>
+			<div class="experience-card">
+				<h3>Senior Software Engineer</h3>
+				<p class="company">Previous Company</p>
+				<p class="timeline">2020 - 2022</p>
+				<p class="description">
+					Developed full-stack applications and improved system performance. Contributed to cloud infrastructure optimization.
+				</p>
+			</div>
+			<div class="experience-card">
+				<h3>Software Engineer</h3>
+				<p class="company">Startup</p>
+				<p class="timeline">2018 - 2020</p>
+				<p class="description">
+					Built core features and established engineering best practices. Scaled application to serve thousands of users.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	// Intersection Observer for fade-in animations
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.style.opacity = '1';
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.experience-card').forEach(el => {
+		observer.observe(el);
+	});
+</script>

@@ -1,0 +1,38 @@
+---
+import '../styles/shared.css';
+---
+
+<section id="about" class="section about-section">
+	<div class="section-container">
+		<h2 class="section-title">About Me</h2>
+		<div class="about-content">
+			<p>
+				I'm a passionate software engineer with expertise in full-stack development, cloud architecture, and building scalable systems.
+				I love creating elegant solutions to complex problems and continuously learning new technologies.
+			</p>
+			<p>
+				When I'm not coding, you can find me exploring new tech trends, contributing to open source, or enjoying the outdoors.
+			</p>
+		</div>
+	</div>
+</section>
+
+<script>
+	// Intersection Observer for fade-in animations
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.style.opacity = '1';
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.about-content p').forEach(el => {
+		observer.observe(el);
+	});
+</script>
