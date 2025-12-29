@@ -270,6 +270,26 @@ html.dark .profile {
 	animation: fadeInUp 0.8s ease 0.5s both;
 }
 
+.resume-link {
+	display: inline-block;
+	padding: 0.7rem 1.5rem;
+	margin-bottom: 2rem;
+	background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+	color: white;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 1rem;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+	animation: fadeInUp 0.8s ease 0.55s both;
+}
+
+.resume-link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
 .profile-description {
 	font-size: 1.1rem;
 	color: var(--light-text);
@@ -642,6 +662,76 @@ html.dark .footer {
 	color: var(--primary-color);
 }
 
+/* Lightbox Modal */
+.lightbox {
+	display: none;
+	position: fixed;
+	z-index: 2000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.9);
+	animation: fadeIn 0.3s ease;
+	align-items: center;
+	justify-content: center;
+}
+
+.lightbox-content {
+	max-width: 90%;
+	max-height: 90vh;
+	object-fit: contain;
+	animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+	position: absolute;
+	top: 20px;
+	right: 40px;
+	color: white;
+	font-size: 40px;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+	transition: color 0.3s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+	color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.project-image {
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-image:hover {
+	transform: scale(1.02);
+	box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 	/* Navigation */
@@ -684,6 +774,11 @@ html.dark .footer {
 	.profile-subtitle {
 		font-size: 1rem;
 		margin-bottom: 2rem;
+	}
+
+	.resume-link {
+		padding: 0.6rem 1.3rem;
+		font-size: 0.95rem;
 	}
 
 	.headshot-placeholder {
@@ -824,6 +919,11 @@ html.dark .footer {
 	.profile-subtitle {
 		font-size: 0.95rem;
 		margin-bottom: 1.5rem;
+	}
+
+	.resume-link {
+		padding: 0.5rem 1rem;
+		font-size: 0.9rem;
 	}
 
 	.headshot-placeholder {

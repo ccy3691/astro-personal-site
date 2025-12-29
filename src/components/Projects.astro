@@ -1,5 +1,23 @@
 ---
 import '../styles/shared.css';
+import ProjectCard from './ProjectCard.astro';
+import surveyPlatform from '../assets/survey_platform.png';
+import portfolioSite from '../assets/portfolio_site.png';
+
+const projects = [
+	{
+		image: { src: surveyPlatform.src, alt: 'Autosolve Survey Platform' },
+		title: 'Autosolve Survey Platform',
+		description: 'Solo project to build full web application for client. Survey platform for creating, sending, and analyzing surveys results to aid in business operations',
+		tags: ['React', 'Laravel', 'Postgres', 'Multitenant']
+	},
+	{
+		image: { src: portfolioSite.src, alt: 'Portfolio Website' },
+		title: 'Portfolio Website',
+		description: 'Simple static site to showcase my experience and some of my projects',
+		tags: ['Astro', 'Tailwind', 'Cloudflare Pages']
+	}
+];
 ---
 
 <section id="projects" class="section projects-section">
@@ -7,42 +25,33 @@ import '../styles/shared.css';
 		<h2 class="section-title">Projects</h2>
 		<div class="projects-grid">
 			<div class="project-card">
-				<div class="project-image-placeholder">
-					<span>Project 1</span>
-				</div>
-				<h3>Amazing Project One</h3>
-				<p>A cutting-edge web application built with modern technologies. Features include real-time updates and AI integration.</p>
+			    <img src={surveyPlatform.src} alt="Autosolve Survey Platform" class="project-image clickable-image" data-image={surveyPlatform.src} data-alt="Autosolve Survey Platform" />
+				<h3>Autosolve Survey Platform</h3>
+				<p>Solo project to build full web application for client. Survey platform for creating, sending, and analyzing surveys results to aid in business operations</p>
 				<div class="project-tags">
 					<span class="tag">React</span>
-					<span class="tag">Node.js</span>
-					<span class="tag">MongoDB</span>
+					<span class="tag">Laravel</span>
+					<span class="tag">Postgres</span>
+                    <span class="tag">Multitenant</span>
 				</div>
 			</div>
 			<div class="project-card">
-				<div class="project-image-placeholder">
-					<span>Project 2</span>
-				</div>
-				<h3>Innovative Platform</h3>
-				<p>Enterprise-grade platform serving global users. Optimized for performance and scalability with 99.9% uptime.</p>
+                    <img src={portfolioSite.src} alt="Portfolio Website" class="project-image clickable-image" data-image={portfolioSite.src} data-alt="Portfolio Website" />
+				<h3>Portfolio Website</h3>
+				<p>Simple static site to showcase my experience and some of my projects</p>
 				<div class="project-tags">
-					<span class="tag">TypeScript</span>
-					<span class="tag">AWS</span>
-					<span class="tag">PostgreSQL</span>
-				</div>
-			</div>
-			<div class="project-card">
-				<div class="project-image-placeholder">
-					<span>Project 3</span>
-				</div>
-				<h3>Open Source Contribution</h3>
-				<p>Active contributor to major open source projects. Implemented critical features and helped grow the community.</p>
-				<div class="project-tags">
-					<span class="tag">Python</span>
-					<span class="tag">Docker</span>
-					<span class="tag">Kubernetes</span>
+					<span class="tag">Astro</span>
+					<span class="tag">Tailwind</span>
+					<span class="tag">Cloudflare Pages</span>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<!-- Image Lightbox Modal -->
+	<div id="imageLightbox" class="lightbox">
+		<span class="lightbox-close">&times;</span>
+		<img class="lightbox-content" id="lightboxImage" src="" alt="" />
 	</div>
 </section>
 
@@ -63,5 +72,38 @@ import '../styles/shared.css';
 
 	document.querySelectorAll('.project-card').forEach(el => {
 		observer.observe(el);
+	});
+
+	// Lightbox functionality
+	const lightbox = document.getElementById('imageLightbox');
+	const lightboxImage = document.getElementById('lightboxImage');
+	const closeBtn = document.querySelector('.lightbox-close');
+
+	// Open lightbox on image click
+	document.querySelectorAll('.clickable-image').forEach(img => {
+		img.addEventListener('click', function() {
+			lightbox.style.display = 'flex';
+			lightboxImage.src = this.dataset.image;
+			lightboxImage.alt = this.dataset.alt;
+		});
+	});
+
+	// Close lightbox
+	closeBtn?.addEventListener('click', () => {
+		lightbox.style.display = 'none';
+	});
+
+	// Close lightbox when clicking outside the image
+	lightbox?.addEventListener('click', (e) => {
+		if (e.target === lightbox) {
+			lightbox.style.display = 'none';
+		}
+	});
+
+	// Close lightbox with Escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			lightbox.style.display = 'none';
+		}
 	});
 </script>
