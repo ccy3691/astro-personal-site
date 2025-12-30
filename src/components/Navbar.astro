@@ -35,18 +35,15 @@ import '../styles/shared.css';
 </nav>
 
 <script>
-	// Dark mode toggle
 	const themeToggle = document.getElementById('themeToggle');
 	const html = document.documentElement;
 
-	// Toggle theme
 	themeToggle?.addEventListener('click', () => {
 		html.classList.toggle('dark');
 		const theme = html.classList.contains('dark') ? 'dark' : 'light';
 		localStorage.setItem('theme', theme);
 	});
 
-	// Smooth scroll for navigation links
 	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 		anchor.addEventListener('click', function (e) {
 			e.preventDefault();
@@ -57,3 +54,170 @@ import '../styles/shared.css';
 		});
 	});
 </script>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        transition: background-color 0.3s ease;
+    }
+
+    html.dark .navbar {
+        background: rgba(15, 23, 42, 0.95);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+    }
+
+    .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-logo:hover {
+        transform: translateY(-2px);
+    }
+
+    .logo-full {
+        display: inline;
+    }
+
+    .logo-short {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .theme-toggle {
+        background: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        color: var(--text-color);
+    }
+
+    .theme-toggle:hover {
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    .theme-toggle svg {
+        width: 20px;
+        height: 20px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .sun-icon {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    .moon-icon {
+        opacity: 0;
+        transform: rotate(-90deg);
+        position: absolute;
+    }
+
+    html.dark .sun-icon {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+
+    html.dark .moon-icon {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        /* Navigation */
+        .nav-container {
+            padding: 0 1rem;
+            height: 60px;
+        }
+
+        .nav-menu {
+            gap: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .logo-full {
+            display: none;
+        }
+
+        .logo-short {
+            display: inline;
+        }
+
+        .theme-toggle {
+            padding: 8px 10px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+    }
+
+    /* Extra Small Devices (phones under 480px) */
+    @media (max-width: 480px) {
+        .nav-container {
+            padding: 0 0.75rem;
+            height: 56px;
+        }
+
+        .nav-menu {
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>

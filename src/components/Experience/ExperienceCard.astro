@@ -1,0 +1,135 @@
+---
+import '../../styles/shared.css';
+
+interface Props {
+	title: string;
+	description: string;
+	company: string;
+	timeline: string;
+}
+
+const {title, description, company, timeline } = Astro.props;
+---
+
+<div class="experience-card">
+	<h3>{title}</h3>
+	<p class="company">{company}</p>
+	<p class="timeline">{timeline}</p>
+	<p class="description">
+		{description}
+	</p>
+</div>
+
+<style>
+	.experience-card {
+        background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .experience-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .experience-card:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .experience-card:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .experience-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .experience-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .experience-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-color);
+    }
+
+    html.dark .experience-card:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .experience-card h3 {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .experience-card .company {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .experience-card .timeline {
+        color: var(--light-text);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .experience-card .description {
+        color: var(--light-text);
+        line-height: 1.6;
+    }
+
+	@media (max-width: 480px) {
+		.experience-card {
+			padding: 1.25rem;
+		}
+
+		.exp-title {
+			font-size: 1rem;
+		}
+
+		.exp-company {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.experience-card {
+			padding: 1.5rem;
+		}
+
+		.exp-title {
+			font-size: 1.1rem;
+		}
+
+		.exp-company {
+			font-size: 0.95rem;
+		}
+
+		.exp-date {
+			font-size: 0.85rem;
+		}
+
+		.exp-description {
+			font-size: 0.95rem;
+			line-height: 1.5;
+		}
+	}
+</style>

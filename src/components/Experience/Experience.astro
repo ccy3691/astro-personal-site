@@ -1,0 +1,82 @@
+---
+import '../../styles/shared.css';
+import ExperienceCard from './ExperienceCard.astro';
+
+const experiences = [
+    {
+        title: 'Lead Software Engineer',
+        company: 'Clarivate',
+        timeline: '2022 - Present',
+        description: 'Leading engineering initiatives and architecting scalable solutions. Driving technical excellence and mentoring engineering teams across multiple projects.'
+    },
+    {
+        title: 'Software Developer',
+        company: 'CSX Technology',
+        timeline: '2020 - 2022',
+        description: 'Developed full-stack applications to streamline business processes in the field.'
+    },
+    {
+        title: 'Software Developer Intern',
+        company: 'Revelation Waste',
+        timeline: '2016 - 2018',
+        description: 'Interned as a software developer, contributing to various projects and gaining hands-on experience in software development and team collaboration.'
+    }
+];
+
+---
+
+<section id="experience" class="section experience-section">
+	<div class="section-container">
+		<h2 class="section-title">Experience</h2>
+		<div class="experience-grid">
+			{experiences.map(exp => (
+                <ExperienceCard 
+                    title={exp.title} 
+                    company={exp.company} 
+                    timeline={exp.timeline}
+                    description={exp.description} 
+                />
+            ))}
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.style.opacity = '1';
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.experience-card').forEach(el => {
+		observer.observe(el);
+	});
+</script>
+
+<style>
+    .experience-section {
+        background: var(--bg-white);
+        transition: background 0.3s ease;
+    }
+
+    .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+		.experience-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+    }
+</style>

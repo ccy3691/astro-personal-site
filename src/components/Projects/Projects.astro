@@ -1,8 +1,8 @@
 ---
-import '../styles/shared.css';
+import '../../styles/shared.css';
 import ProjectCard from './ProjectCard.astro';
-import surveyPlatform from '../assets/survey_platform.png';
-import portfolioSite from '../assets/portfolio_site.png';
+import surveyPlatform from '../../assets/survey_platform.png';
+import portfolioSite from '../../assets/portfolio_site.png';
 
 const projects = [
 	{
@@ -24,27 +24,14 @@ const projects = [
 	<div class="section-container">
 		<h2 class="section-title">Projects</h2>
 		<div class="projects-grid">
-			<div class="project-card">
-			    <img src={surveyPlatform.src} alt="Autosolve Survey Platform" class="project-image clickable-image" data-image={surveyPlatform.src} data-alt="Autosolve Survey Platform" />
-				<h3>Autosolve Survey Platform</h3>
-				<p>Solo project to build full web application for client. Survey platform for creating, sending, and analyzing surveys results to aid in business operations</p>
-				<div class="project-tags">
-					<span class="tag">React</span>
-					<span class="tag">Laravel</span>
-					<span class="tag">Postgres</span>
-                    <span class="tag">Multitenant</span>
-				</div>
-			</div>
-			<div class="project-card">
-                    <img src={portfolioSite.src} alt="Portfolio Website" class="project-image clickable-image" data-image={portfolioSite.src} data-alt="Portfolio Website" />
-				<h3>Portfolio Website</h3>
-				<p>Simple static site to showcase my experience and some of my projects</p>
-				<div class="project-tags">
-					<span class="tag">Astro</span>
-					<span class="tag">Tailwind</span>
-					<span class="tag">Cloudflare Pages</span>
-				</div>
-			</div>
+            {projects.map(project => (
+                <ProjectCard 
+                    image={project.image} 
+                    title={project.title} 
+                    description={project.description} 
+                    tags={project.tags} 
+                />
+            ))}
 		</div>
 	</div>
 
@@ -82,15 +69,15 @@ const projects = [
 	// Open lightbox on image click
 	document.querySelectorAll('.clickable-image').forEach(img => {
 		img.addEventListener('click', function() {
-			lightbox.style.display = 'flex';
-			lightboxImage.src = this.dataset.image;
-			lightboxImage.alt = this.dataset.alt;
+			lightbox!.style.display = 'flex';
+			lightboxImage!.src = this.dataset.image;
+			lightboxImage!.alt = this.dataset.alt;
 		});
 	});
 
 	// Close lightbox
 	closeBtn?.addEventListener('click', () => {
-		lightbox.style.display = 'none';
+		lightbox!.style.display = 'none';
 	});
 
 	// Close lightbox when clicking outside the image
@@ -103,7 +90,28 @@ const projects = [
 	// Close lightbox with Escape key
 	document.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape') {
-			lightbox.style.display = 'none';
+			lightbox!.style.display = 'none';
 		}
 	});
 </script>
+
+<style>
+    .projects-section {
+        background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        transition: background 0.3s ease;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+     @media (max-width: 768px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+</style>

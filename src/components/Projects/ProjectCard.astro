@@ -1,0 +1,177 @@
+---
+import '../../styles/shared.css';
+
+interface Props {
+	image?: {
+		src: string;
+		alt: string;
+	};
+	title: string;
+	description: string;
+	tags: string[];
+}
+
+const { image, title, description, tags } = Astro.props;
+---
+
+<div class="project-card">
+	{image && (
+		<img 
+			src={image.src} 
+			alt={image.alt} 
+			class="project-image clickable-image" 
+			data-image={image.src} 
+			data-alt={image.alt} 
+		/>
+	)}
+	<h3>{title}</h3>
+	<p>{description}</p>
+	<div class="project-tags">
+		{tags.map(tag => (
+			<span class="tag">{tag}</span>
+		))}
+	</div>
+</div>
+
+<style>
+    .project-card {
+        background: var(--bg-white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.6s ease forwards;
+        opacity: 0;
+    }
+
+    html.dark .project-card {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .project-card:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .project-card:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
+    }
+
+    html.dark .project-card:hover {
+        box-shadow: 0 20px 50px rgba(96, 165, 250, 0.3);
+    }
+
+    .project-image-placeholder {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .project-image-placeholder::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: left 0.5s ease;
+    }
+
+    .project-card:hover .project-image-placeholder::before {
+        left: 100%;
+    }
+
+    .project-card h3 {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        padding: 1.5rem 1.5rem 0.5rem;
+    }
+
+    .project-card p {
+        color: var(--light-text);
+        padding: 0 1.5rem;
+        line-height: 1.6;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .tag {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary-color);
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    @media (max-width: 480px) {
+        .project-card {
+            padding: 1.25rem;
+        }
+
+        .project-image {
+            height: 180px;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .project-card {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+        }
+
+        .project-image {
+            height: 200px;
+        }
+
+        .tech-tags {
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>

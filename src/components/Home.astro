@@ -1,26 +1,20 @@
 ---
-import Navbar from './Navbar.astro';
 import Profile from './Profile.astro';
 import About from './About.astro';
-import Experience from './Experience.astro';
-import Projects from './Projects.astro';
-import Footer from './Footer.astro';
+import Experience from './Experience/Experience.astro';
+import Projects from './Projects/Projects.astro';
 import '../styles/shared.css';
 ---
 
-<Navbar />
 <Profile />
 <About />
 <Experience />
 <Projects />
-<Footer />
 
 <script>
-	// Dark mode toggle
-	const themeToggle = document.getElementById('themeToggle');
+
 	const html = document.documentElement;
 
-	// Listen for system theme changes (if user hasn't set a preference)
 	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
 		if (!localStorage.getItem('theme')) {
 			if (e.matches) {

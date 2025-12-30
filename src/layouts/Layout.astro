@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 ---
 
@@ -26,7 +28,9 @@ import "../styles/global.css";
 		</script>
 	</head>
 	<body class="p-4">
+		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>
 
