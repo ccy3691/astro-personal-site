@@ -1,46 +1,16 @@
-# Astro Starter Kit: Basics
+# Astro Personal Site
 
-```sh
-npm create astro@latest -- --template basics
-```
+This is a personal website built with **[Astro](https://astro.build/)** — a modern static site framework focused on performance, simplicity, and great developer experience.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The site is intended to be a lightweight, fast-loading personal homepage that can be easily customized and deployed to common static hosting providers.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Tech Stack
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- **Astro** – Static site framework
+- **TypeScript** – Type safety and better DX
+- **HTML / CSS** – Simple, framework-agnostic styling
+- **Vite** – Fast local development and builds
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---

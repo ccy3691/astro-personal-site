@@ -3,6 +3,7 @@ import '../../styles/shared.css';
 import ProjectCard from './ProjectCard.astro';
 import surveyPlatform from '../../assets/survey_platform.png';
 import portfolioSite from '../../assets/portfolio_site.png';
+import notelyImg from '../../assets/notely.png';
 
 const projects = [
 	{
@@ -14,8 +15,16 @@ const projects = [
 	{
 		image: { src: portfolioSite.src, alt: 'Portfolio Website' },
 		title: 'Portfolio Website',
+		titleLink: 'https://github.com/ccy3691/astro-personal-site',
 		description: 'Simple static site to showcase my experience and some of my projects',
 		tags: ['Astro', 'Tailwind', 'Cloudflare Pages']
+	},
+	{
+		image: { src: notelyImg.src, alt: 'Notely' },
+		title: 'Notely',
+		titleLink: 'https://github.com/ccy3691/notely',
+		description: 'A note-taking web application that uses AI for fast full-text search and automatic generation of flashcards from notes. Allows users to organize notes with categories and quiz themselves using generated flashcards.',
+		tags: ['Laravel', 'VueJS', 'AI', 'Postgres']
 	}
 ];
 ---
@@ -25,12 +34,7 @@ const projects = [
 		<h2 class="section-title">Projects</h2>
 		<div class="projects-grid">
             {projects.map(project => (
-                <ProjectCard 
-                    image={project.image} 
-                    title={project.title} 
-                    description={project.description} 
-                    tags={project.tags} 
-                />
+                <ProjectCard project={project} />
             ))}
 		</div>
 	</div>
