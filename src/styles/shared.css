@@ -156,16 +156,6 @@ body {
     }
 }
 
-.project-image {
-	cursor: pointer;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-image:hover {
-	transform: scale(1.02);
-	box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
 	/* Sections */
