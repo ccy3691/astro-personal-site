@@ -4,6 +4,8 @@ This is a personal website built with **[Astro](https://astro.build/)** — a mo
 
 The site is intended to be a lightweight, fast-loading personal homepage that can be easily customized and deployed to common static hosting providers.
 
+this site is deployed to cloudflare pages
+
 ---
 
 ## 🚀 Tech Stack
