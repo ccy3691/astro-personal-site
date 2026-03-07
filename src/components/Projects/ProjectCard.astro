@@ -31,7 +31,7 @@ const { image, title, description, tags, titleLink } = Astro.props.project;
         <div class="project-title">
             <h3>{title}</h3>
             {titleLink ? (
-                <a href={titleLink} target="_blank" rel="noopener noreferrer" class="project-link">Source ↗</a>
+                <a href={titleLink} target="_blank" rel="noopener noreferrer" class="project-link">Source</a>
             ) : null}
         </div>
         <p>{description}</p>
